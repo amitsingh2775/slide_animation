@@ -175,7 +175,13 @@ const VideoAnimation = () => {
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 flex gap-4">
       <button onClick={togglePlayPause} className="flex items-center px-6 py-3 text-white bg-white/20 rounded-full backdrop-blur-md hover:bg-white/30">
           {isPlaying ? <Pause className="mr-2 h-5 w-5" /> : <Play className="mr-2 h-5 w-5" />}
-          {isPlaying ? "Pause" : timelineRef.current?.time() > 0 ? "Resume" : "Play"}
+           {isPlaying 
+  ? "Pause" 
+  : timelineRef.current && typeof timelineRef.current.time === "function" && timelineRef.current.time() > 0 
+    ? "Resume" 
+    : "Play"
+}
+
         </button>
       </div>
 
